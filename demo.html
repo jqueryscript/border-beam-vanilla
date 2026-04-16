@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>border-beam-vanilla Demo</title>
+    <link rel="stylesheet" href="./demo.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="header">
+        <nav class="top-bar" aria-label="Project links">
+          <a class="icon-btn" href="https://www.npmjs.com/package/border-beam-vanilla" target="_blank" rel="noreferrer" aria-label="NPM package">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24">
+              <path d="M4 4h16v16H4z M7 7v10h2V9h2v8h2V9h2v8h2V7z"></path>
+            </svg>
+          </a>
+          <a class="icon-btn" href="https://github.com/jqueryscript/border-beam-vanilla" target="_blank" rel="noreferrer" aria-label="GitHub repository">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+            </svg>
+          </a>
+        </nav>
+
+        <div class="header-icon">
+          <img src="./icon-web.png" alt="" width="207" height="138" />
+        </div>
+
+        <h1 class="title">border-beam-vanilla</h1>
+        <p class="subtitle">A standalone Vanilla JavaScript border glow effect with compact presets, theme-aware tuning, and a static demo that runs directly from the built files in <code>dist/</code>.</p>
+      </header>
+
+      <section class="examples-section" aria-label="Effect examples">
+        <div class="example-row-full">
+          <div id="demo-card" class="mock-chat">
+            <div class="mock-chat-inner">
+              <div class="pill">@</div>
+              <div class="placeholder">Build anything...</div>
+              <div class="bottom-row">
+                <div class="tag">Agent</div>
+                <div class="tag">Auto</div>
+                <div class="send-btn">^</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-row-split">
+          <div class="example-cell">
+            <div id="demo-button" class="mock-icon-btn">
+              <div class="mock-icon-btn-square"></div>
+            </div>
+          </div>
+
+          <div class="example-cell">
+            <div class="mock-search-shell">
+              <div id="demo-line" class="mock-search">
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <span>Search</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Installation</h2>
+        <div class="code-block">
+          <code id="install-code">npm install border-beam-vanilla</code>
+          <button class="copy-btn" data-copy="install-code" aria-label="Copy install command">Copy</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title section-title--muted">Usage</h2>
+        <div class="code-block code-block--multi">
+          <code id="usage-code">import { attachBorderBeam } from "border-beam-vanilla";
+
+const card = document.querySelector(".card");
+attachBorderBeam(card, { size: "md" });</code>
+          <button class="copy-btn" data-copy="usage-code" aria-label="Copy usage example">Copy</button>
+        </div>
+      </section>
+
+      <section class="playground-section">
+        <h2 class="section-title">Playground</h2>
+
+        <div class="playground-controls">
+          <div class="control-group">
+            <span class="control-label">Type</span>
+            <div class="control-options" id="size-controls"></div>
+          </div>
+
+          <div class="control-group">
+            <span class="control-label">Color</span>
+            <div class="control-options" id="color-controls"></div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="duration">Duration</label>
+            <input id="duration" class="duration-input" type="number" min="0.5" max="10" step="0.1" value="1.96" />
+          </div>
+
+          <div class="control-group">
+            <span class="control-label">Strength</span>
+            <div class="strength-wrap">
+              <div id="strength-fill" class="strength-fill" style="width: 100%"></div>
+              <span id="strength-value" class="strength-value">100%</span>
+              <input id="strength" class="strength-input" type="range" min="0" max="100" step="1" value="100" />
+            </div>
+          </div>
+
+          <div class="control-group">
+            <span class="control-label">State</span>
+            <button id="toggle" class="toggle-btn" type="button">Pause</button>
+          </div>
+        </div>
+
+        <div class="playground-preview">
+          <div id="playground" class="card card-md">
+            <strong>Playground card</strong>
+            <p>Adjust the controls to preview the current bundle.</p>
+          </div>
+        </div>
+
+        <div class="code-block code-block--multi">
+          <code id="playground-code"></code>
+          <button class="copy-btn" data-copy="playground-code" aria-label="Copy playground code">Copy</button>
+        </div>
+      </section>
+
+      <footer class="footer">Demo for the <strong>jqueryscript</strong> package build in <code>dist/</code>.</footer>
+    </main>
+
+    <script type="module">
+      import { attachBorderBeam } from "./dist/index.es.js";
+
+      const sizeOptions = ["md", "sm", "line"];
+      const colorOptions = ["colorful", "mono", "ocean", "sunset"];
+
+      const state = {
+        size: "md",
+        colorVariant: "colorful",
+        duration: 1.96,
+        strength: 1,
+        active: true,
+      };
+
+      const card = document.getElementById("demo-card");
+      const button = document.getElementById("demo-button");
+      const line = document.getElementById("demo-line");
+      const playground = document.getElementById("playground");
+      const sizeControls = document.getElementById("size-controls");
+      const colorControls = document.getElementById("color-controls");
+      const durationInput = document.getElementById("duration");
+      const strengthInput = document.getElementById("strength");
+      const strengthFill = document.getElementById("strength-fill");
+      const strengthValue = document.getElementById("strength-value");
+      const toggleButton = document.getElementById("toggle");
+      const playgroundCode = document.getElementById("playground-code");
+
+      attachBorderBeam(card, { size: "md", colorVariant: "colorful", theme: "dark" });
+      attachBorderBeam(button, { size: "sm", colorVariant: "colorful", theme: "dark" });
+      attachBorderBeam(line, { size: "line", colorVariant: "colorful", theme: "dark", duration: 2.4, borderRadius: 20 });
+
+      let controller;
+
+      function updateChoiceState(root, activeValue) {
+        root.querySelectorAll("button").forEach((button) => {
+          button.dataset.active = String(button.dataset.value === activeValue);
+        });
+      }
+
+      function renderPlaygroundShape() {
+        playground.className = "card";
+
+        if (state.size === "sm") {
+          playground.classList.add("card-sm");
+          playground.textContent = "";
+          return;
+        }
+
+        if (state.size === "line") {
+          playground.classList.add("card-line");
+          playground.textContent = "Search anything";
+          return;
+        }
+
+        playground.classList.add("card-md");
+        playground.innerHTML = "<strong>Playground card</strong><p>Adjust the controls to preview the current bundle.</p>";
+      }
+
+      function renderCode() {
+        const strengthLine = state.strength < 1 ? `,\n  strength: ${Number(state.strength.toFixed(2))}` : "";
+        playgroundCode.textContent = `attachBorderBeam(element, {\n  size: "${state.size}",\n  colorVariant: "${state.colorVariant}",\n  duration: ${state.duration}${strengthLine},\n  theme: "dark"\n});`;
+      }
+
+      function mountPlayground() {
+        renderPlaygroundShape();
+
+        if (controller) {
+          controller.destroy();
+        }
+
+        controller = attachBorderBeam(playground, {
+          size: state.size,
+          colorVariant: state.colorVariant,
+          duration: state.duration,
+          strength: state.strength,
+          theme: "dark",
+          active: state.active,
+          borderRadius: state.size === "line" ? 20 : undefined,
+        });
+
+        renderCode();
+      }
+
+      sizeOptions.forEach((value) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "tab-btn";
+        button.dataset.value = value;
+        button.textContent = value === "md" ? "Large" : value === "sm" ? "Small" : "Line";
+        button.addEventListener("click", () => {
+          state.size = value;
+          state.duration = value === "line" ? 2.4 : 1.96;
+          durationInput.value = String(state.duration);
+          updateChoiceState(sizeControls, value);
+          mountPlayground();
+        });
+        sizeControls.appendChild(button);
+      });
+
+      colorOptions.forEach((value) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "tab-btn";
+        button.dataset.value = value;
+        button.textContent = value[0].toUpperCase() + value.slice(1);
+        button.addEventListener("click", () => {
+          state.colorVariant = value;
+          updateChoiceState(colorControls, value);
+          mountPlayground();
+        });
+        colorControls.appendChild(button);
+      });
+
+      durationInput.addEventListener("input", () => {
+        const value = Number.parseFloat(durationInput.value);
+        state.duration = Number.isFinite(value) && value > 0 ? value : 1;
+        mountPlayground();
+      });
+
+      strengthInput.addEventListener("input", () => {
+        const value = (Number.parseInt(strengthInput.value, 10) || 0) / 100;
+        state.strength = value;
+        strengthFill.style.width = `${value * 100}%`;
+        strengthValue.textContent = `${Math.round(value * 100)}%`;
+        mountPlayground();
+      });
+
+      toggleButton.addEventListener("click", () => {
+        state.active = !state.active;
+        toggleButton.textContent = state.active ? "Pause" : "Play";
+        controller.setActive(state.active);
+      });
+
+      document.querySelectorAll("[data-copy]").forEach((button) => {
+        button.addEventListener("click", async () => {
+          const id = button.getAttribute("data-copy");
+          const target = document.getElementById(id);
+          if (!target) return;
+          await navigator.clipboard.writeText(target.textContent || "");
+          const previous = button.textContent;
+          button.textContent = "Done";
+          setTimeout(() => {
+            button.textContent = previous;
+          }, 1200);
+        });
+      });
+
+      updateChoiceState(sizeControls, state.size);
+      updateChoiceState(colorControls, state.colorVariant);
+      renderCode();
+      mountPlayground();
+    </script>
+  </body>
+</html>
