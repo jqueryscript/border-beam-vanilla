@@ -1,5 +1,7 @@
 # border-beam-vanilla
 
+The Vanilla JavaScript Version of Jakubantalik's border-beam (https://github.com/Jakubantalik/border-beam).
+
 `border-beam-vanilla` adds a traveling glow to any existing DOM element. The package targets plain JavaScript projects, decorates elements in place, and exposes a small controller API for updates and cleanup.
 
 ## Install
@@ -85,17 +87,9 @@ document.body.appendChild(beam.element);
 - The injected effect layers use `pointer-events: none`, so they do not block clicks or focus.
 - The package targets modern browsers that support the CSS features used by the effect.
 
-## Local Demo
-
-Open [demo.html](/E:/Works/border-beam-main/demo.html) after building the library once. The file imports `./dist/index.es.js` directly, so it does not require a separate demo build step.
-
 ## Development
 
 ```bash
 npm run build
 npm run test
 ```
-
-## Repository
-
-https://github.com/jqueryscript/border-beam-vanilla
