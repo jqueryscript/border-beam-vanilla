@@ -2,6 +2,10 @@
 
 The Vanilla JavaScript Version of Jakubantalik's border-beam (https://github.com/Jakubantalik/border-beam).
 
+## Live Demo
+
+https://www.cssscript.com/demo/border-beam-vanilla/
+
 `border-beam-vanilla` adds a traveling glow to any existing DOM element. The package targets plain JavaScript projects, decorates elements in place, and exposes a small controller API for updates and cleanup.
 
 ## Install
